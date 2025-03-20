@@ -1,0 +1,395 @@
+===== Running tests with 1 core(s) =====
+Running model with max_depth=3, min_samples_split=250
+Configuration: max_depth=3, min_samples_split=250, Cores=1
+Iterations: 10
+Latency: Mean=3.538326, Std=0.050170
+Latency MoE: 0.878823%
+-------------------------------------------------------
+Running model with max_depth=7, min_samples_split=1000
+Configuration: max_depth=7, min_samples_split=1000, Cores=1
+Iterations: 10
+Latency: Mean=4.411936, Std=0.054284
+Latency MoE: 0.762607%
+-------------------------------------------------------
+Running model with max_depth=7, min_samples_split=250
+Configuration: max_depth=7, min_samples_split=250, Cores=1
+Iterations: 10
+Latency: Mean=4.421574, Std=0.071686
+Latency MoE: 1.004872%
+-------------------------------------------------------
+Running model with max_depth=10, min_samples_split=70
+Configuration: max_depth=10, min_samples_split=70, Cores=1
+Iterations: 10
+Latency: Mean=4.982889, Std=0.083651
+Latency MoE: 1.040508%
+-------------------------------------------------------
+Running model with max_depth=10, min_samples_split=15
+Configuration: max_depth=10, min_samples_split=15, Cores=1
+Iterations: 10
+Latency: Mean=4.998664, Std=0.054767
+Latency MoE: 0.679075%
+-------------------------------------------------------
+Running model with max_depth=20, min_samples_split=70
+Configuration: max_depth=20, min_samples_split=70, Cores=1
+Iterations: 10
+Latency: Mean=5.795224, Std=0.084273
+Latency MoE: 0.901314%
+-------------------------------------------------------
+Running model with max_depth=20, min_samples_split=15
+Configuration: max_depth=20, min_samples_split=15, Cores=1
+Iterations: 10
+Latency: Mean=5.844429, Std=0.096557
+Latency MoE: 1.023998%
+-------------------------------------------------------
+Running model with max_depth=25, min_samples_split=5
+Configuration: max_depth=25, min_samples_split=5, Cores=1
+Iterations: 10
+Latency: Mean=5.874539, Std=0.067812
+Latency MoE: 0.715468%
+-------------------------------------------------------
+Running model with max_depth=25, min_samples_split=2
+Configuration: max_depth=25, min_samples_split=2, Cores=1
+Iterations: 10
+Latency: Mean=5.911359, Std=0.074252
+Latency MoE: 0.778529%
+-------------------------------------------------------
+Running model with max_depth=30, min_samples_split=5
+Configuration: max_depth=30, min_samples_split=5, Cores=1
+Iterations: 10
+Latency: Mean=5.947944, Std=0.077207
+Latency MoE: 0.804540%
+-------------------------------------------------------
+Running model with max_depth=30, min_samples_split=2
+Configuration: max_depth=30, min_samples_split=2, Cores=1
+Iterations: 10
+Latency: Mean=5.948517, Std=0.056197
+Latency MoE: 0.585545%
+-------------------------------------------------------
+Running model with max_depth=None, min_samples_split=5
+Configuration: max_depth=None, min_samples_split=5, Cores=1
+Iterations: 10
+Latency: Mean=6.064120, Std=0.132265
+Latency MoE: 1.351868%
+-------------------------------------------------------
+Running model with max_depth=None, min_samples_split=2
+Configuration: max_depth=None, min_samples_split=2, Cores=1
+Iterations: 10
+Latency: Mean=6.076493, Std=0.250033
+Latency MoE: 2.550357%
+-------------------------------------------------------
+===== Running tests with 2 core(s) =====
+Running model with max_depth=3, min_samples_split=250
+Configuration: max_depth=3, min_samples_split=250, Cores=2
+Iterations: 10
+Latency: Mean=3.524566, Std=0.061588
+Latency MoE: 1.083047%
+-------------------------------------------------------
+Running model with max_depth=7, min_samples_split=1000
+Configuration: max_depth=7, min_samples_split=1000, Cores=2
+Iterations: 10
+Latency: Mean=4.425914, Std=0.048528
+Latency MoE: 0.679589%
+-------------------------------------------------------
+Running model with max_depth=7, min_samples_split=250
+Configuration: max_depth=7, min_samples_split=250, Cores=2
+Iterations: 10
+Latency: Mean=4.415852, Std=0.047876
+Latency MoE: 0.671981%
+-------------------------------------------------------
+Running model with max_depth=10, min_samples_split=70
+Configuration: max_depth=10, min_samples_split=70, Cores=2
+Iterations: 10
+Latency: Mean=4.986109, Std=0.061760
+Latency MoE: 0.767721%
+-------------------------------------------------------
+Running model with max_depth=10, min_samples_split=15
+Configuration: max_depth=10, min_samples_split=15, Cores=2
+Iterations: 10
+Latency: Mean=5.023498, Std=0.067951
+Latency MoE: 0.838395%
+-------------------------------------------------------
+Running model with max_depth=20, min_samples_split=70
+Configuration: max_depth=20, min_samples_split=70, Cores=2
+Iterations: 10
+Latency: Mean=5.800519, Std=0.067876
+Latency MoE: 0.725283%
+-------------------------------------------------------
+Running model with max_depth=20, min_samples_split=15
+Configuration: max_depth=20, min_samples_split=15, Cores=2
+Iterations: 10
+Latency: Mean=5.839970, Std=0.085497
+Latency MoE: 0.907397%
+-------------------------------------------------------
+Running model with max_depth=25, min_samples_split=5
+Configuration: max_depth=25, min_samples_split=5, Cores=2
+Iterations: 10
+Latency: Mean=5.948811, Std=0.076338
+Latency MoE: 0.795369%
+-------------------------------------------------------
+Running model with max_depth=25, min_samples_split=2
+Configuration: max_depth=25, min_samples_split=2, Cores=2
+Iterations: 10
+Latency: Mean=5.916612, Std=0.101038
+Latency MoE: 1.058443%
+-------------------------------------------------------
+Running model with max_depth=30, min_samples_split=5
+Configuration: max_depth=30, min_samples_split=5, Cores=2
+Iterations: 10
+Latency: Mean=5.968828, Std=0.078182
+Latency MoE: 0.811844%
+-------------------------------------------------------
+Running model with max_depth=30, min_samples_split=2
+Configuration: max_depth=30, min_samples_split=2, Cores=2
+Iterations: 10
+Latency: Mean=5.988533, Std=0.106466
+Latency MoE: 1.101912%
+-------------------------------------------------------
+Running model with max_depth=None, min_samples_split=5
+Configuration: max_depth=None, min_samples_split=5, Cores=2
+Iterations: 10
+Latency: Mean=5.984672, Std=0.070319
+Latency MoE: 0.728268%
+-------------------------------------------------------
+Running model with max_depth=None, min_samples_split=2
+Configuration: max_depth=None, min_samples_split=2, Cores=2
+Iterations: 10
+Latency: Mean=5.995419, Std=0.094289
+Latency MoE: 0.974760%
+-------------------------------------------------------
+===== Running tests with 4 core(s) =====
+Running model with max_depth=3, min_samples_split=250
+Configuration: max_depth=3, min_samples_split=250, Cores=4
+Iterations: 10
+Latency: Mean=3.534083, Std=0.051229
+Latency MoE: 0.898460%
+-------------------------------------------------------
+Running model with max_depth=7, min_samples_split=1000
+Configuration: max_depth=7, min_samples_split=1000, Cores=4
+Iterations: 10
+Latency: Mean=4.439651, Std=0.071721
+Latency MoE: 1.001270%
+-------------------------------------------------------
+Running model with max_depth=7, min_samples_split=250
+Configuration: max_depth=7, min_samples_split=250, Cores=4
+Iterations: 10
+Latency: Mean=4.422274, Std=0.059704
+Latency MoE: 0.836783%
+-------------------------------------------------------
+Running model with max_depth=10, min_samples_split=70
+Configuration: max_depth=10, min_samples_split=70, Cores=4
+Iterations: 10
+Latency: Mean=5.009577, Std=0.056573
+Latency MoE: 0.699949%
+-------------------------------------------------------
+Running model with max_depth=10, min_samples_split=15
+Configuration: max_depth=10, min_samples_split=15, Cores=4
+Iterations: 10
+Latency: Mean=5.004411, Std=0.070137
+Latency MoE: 0.868666%
+-------------------------------------------------------
+Running model with max_depth=20, min_samples_split=70
+Configuration: max_depth=20, min_samples_split=70, Cores=4
+Iterations: 10
+Latency: Mean=5.800366, Std=0.103080
+Latency MoE: 1.101476%
+-------------------------------------------------------
+Running model with max_depth=20, min_samples_split=15
+Configuration: max_depth=20, min_samples_split=15, Cores=4
+Iterations: 10
+Latency: Mean=5.847449, Std=0.081091
+Latency MoE: 0.859532%
+-------------------------------------------------------
+Running model with max_depth=25, min_samples_split=5
+Configuration: max_depth=25, min_samples_split=5, Cores=4
+Iterations: 10
+Latency: Mean=5.919257, Std=0.070561
+Latency MoE: 0.738842%
+-------------------------------------------------------
+Running model with max_depth=25, min_samples_split=2
+Configuration: max_depth=25, min_samples_split=2, Cores=4
+Iterations: 10
+Latency: Mean=5.922808, Std=0.099232
+Latency MoE: 1.038440%
+-------------------------------------------------------
+Running model with max_depth=30, min_samples_split=5
+Configuration: max_depth=30, min_samples_split=5, Cores=4
+Iterations: 10
+Latency: Mean=5.958551, Std=0.075872
+Latency MoE: 0.789214%
+-------------------------------------------------------
+Running model with max_depth=30, min_samples_split=2
+Configuration: max_depth=30, min_samples_split=2, Cores=4
+Iterations: 10
+Latency: Mean=5.975195, Std=0.078342
+Latency MoE: 0.812643%
+-------------------------------------------------------
+Running model with max_depth=None, min_samples_split=5
+Configuration: max_depth=None, min_samples_split=5, Cores=4
+Iterations: 10
+Latency: Mean=5.988908, Std=0.085214
+Latency MoE: 0.881898%
+-------------------------------------------------------
+Running model with max_depth=None, min_samples_split=2
+Configuration: max_depth=None, min_samples_split=2, Cores=4
+Iterations: 10
+Latency: Mean=6.002015, Std=0.077963
+Latency MoE: 0.805093%
+-------------------------------------------------------
+===== Running tests with 8 core(s) =====
+Running model with max_depth=3, min_samples_split=250
+Configuration: max_depth=3, min_samples_split=250, Cores=8
+Iterations: 10
+Latency: Mean=3.544897, Std=0.062345
+Latency MoE: 1.090071%
+-------------------------------------------------------
+Running model with max_depth=7, min_samples_split=1000
+Configuration: max_depth=7, min_samples_split=1000, Cores=8
+Iterations: 10
+Latency: Mean=4.414974, Std=0.069468
+Latency MoE: 0.975238%
+-------------------------------------------------------
+Running model with max_depth=7, min_samples_split=250
+Configuration: max_depth=7, min_samples_split=250, Cores=8
+Iterations: 10
+Latency: Mean=4.414916, Std=0.078537
+Latency MoE: 1.102576%
+-------------------------------------------------------
+Running model with max_depth=10, min_samples_split=70
+Configuration: max_depth=10, min_samples_split=70, Cores=8
+Iterations: 10
+Latency: Mean=5.044162, Std=0.094856
+Latency MoE: 1.165554%
+-------------------------------------------------------
+Running model with max_depth=10, min_samples_split=15
+Configuration: max_depth=10, min_samples_split=15, Cores=8
+Iterations: 10
+Latency: Mean=5.014139, Std=0.080390
+Latency MoE: 0.993715%
+-------------------------------------------------------
+Running model with max_depth=20, min_samples_split=70
+Configuration: max_depth=20, min_samples_split=70, Cores=8
+Iterations: 10
+Latency: Mean=5.808167, Std=0.073443
+Latency MoE: 0.783733%
+-------------------------------------------------------
+Running model with max_depth=20, min_samples_split=15
+Configuration: max_depth=20, min_samples_split=15, Cores=8
+Iterations: 10
+Latency: Mean=5.827084, Std=0.091127
+Latency MoE: 0.969284%
+-------------------------------------------------------
+Running model with max_depth=25, min_samples_split=5
+Configuration: max_depth=25, min_samples_split=5, Cores=8
+Iterations: 10
+Latency: Mean=5.905354, Std=0.085371
+Latency MoE: 0.896029%
+-------------------------------------------------------
+Running model with max_depth=25, min_samples_split=2
+Configuration: max_depth=25, min_samples_split=2, Cores=8
+Iterations: 10
+Latency: Mean=5.951530, Std=0.099587
+Latency MoE: 1.037125%
+-------------------------------------------------------
+Running model with max_depth=30, min_samples_split=5
+Configuration: max_depth=30, min_samples_split=5, Cores=8
+Iterations: 10
+Latency: Mean=5.985414, Std=0.081941
+Latency MoE: 0.848523%
+-------------------------------------------------------
+Running model with max_depth=30, min_samples_split=2
+Configuration: max_depth=30, min_samples_split=2, Cores=8
+Iterations: 10
+Latency: Mean=5.983458, Std=0.067508
+Latency MoE: 0.699295%
+-------------------------------------------------------
+Running model with max_depth=None, min_samples_split=5
+Configuration: max_depth=None, min_samples_split=5, Cores=8
+Iterations: 10
+Latency: Mean=5.990067, Std=0.081374
+Latency MoE: 0.841997%
+-------------------------------------------------------
+Running model with max_depth=None, min_samples_split=2
+Configuration: max_depth=None, min_samples_split=2, Cores=8
+Iterations: 10
+Latency: Mean=6.020710, Std=0.084370
+Latency MoE: 0.868552%
+-------------------------------------------------------
+===== Running tests with 16 core(s) =====
+Running model with max_depth=3, min_samples_split=250
+Configuration: max_depth=3, min_samples_split=250, Cores=16
+Iterations: 10
+Latency: Mean=3.555891, Std=0.050002
+Latency MoE: 0.871561%
+-------------------------------------------------------
+Running model with max_depth=7, min_samples_split=1000
+Configuration: max_depth=7, min_samples_split=1000, Cores=16
+Iterations: 10
+Latency: Mean=4.415369, Std=0.073797
+Latency MoE: 1.035919%
+-------------------------------------------------------
+Running model with max_depth=7, min_samples_split=250
+Configuration: max_depth=7, min_samples_split=250, Cores=16
+Iterations: 10
+Latency: Mean=4.420999, Std=0.078908
+Latency MoE: 1.106252%
+-------------------------------------------------------
+Running model with max_depth=10, min_samples_split=70
+Configuration: max_depth=10, min_samples_split=70, Cores=16
+Iterations: 10
+Latency: Mean=5.037672, Std=0.078991
+Latency MoE: 0.971863%
+-------------------------------------------------------
+Running model with max_depth=10, min_samples_split=15
+Configuration: max_depth=10, min_samples_split=15, Cores=16
+Iterations: 10
+Latency: Mean=5.015473, Std=0.075947
+Latency MoE: 0.938549%
+-------------------------------------------------------
+Running model with max_depth=20, min_samples_split=70
+Configuration: max_depth=20, min_samples_split=70, Cores=16
+Iterations: 10
+Latency: Mean=5.804835, Std=0.083661
+Latency MoE: 0.893286%
+-------------------------------------------------------
+Running model with max_depth=20, min_samples_split=15
+Configuration: max_depth=20, min_samples_split=15, Cores=16
+Iterations: 10
+Latency: Mean=5.858644, Std=0.086422
+Latency MoE: 0.914290%
+-------------------------------------------------------
+Running model with max_depth=25, min_samples_split=5
+Configuration: max_depth=25, min_samples_split=5, Cores=16
+Iterations: 10
+Latency: Mean=5.934787, Std=0.096223
+Latency MoE: 1.004915%
+-------------------------------------------------------
+Running model with max_depth=25, min_samples_split=2
+Configuration: max_depth=25, min_samples_split=2, Cores=16
+Iterations: 10
+Latency: Mean=5.922536, Std=0.094781
+Latency MoE: 0.991901%
+-------------------------------------------------------
+Running model with max_depth=30, min_samples_split=5
+Configuration: max_depth=30, min_samples_split=5, Cores=16
+Iterations: 10
+Latency: Mean=5.978274, Std=0.078283
+Latency MoE: 0.811615%
+-------------------------------------------------------
+Running model with max_depth=30, min_samples_split=2
+Configuration: max_depth=30, min_samples_split=2, Cores=16
+Iterations: 10
+Latency: Mean=5.987543, Std=0.089871
+Latency MoE: 0.930311%
+-------------------------------------------------------
+Running model with max_depth=None, min_samples_split=5
+Configuration: max_depth=None, min_samples_split=5, Cores=16
+Iterations: 10
+Latency: Mean=5.967735, Std=0.077962
+Latency MoE: 0.809705%
+-------------------------------------------------------
+Running model with max_depth=None, min_samples_split=2
+Configuration: max_depth=None, min_samples_split=2, Cores=16
+Iterations: 10
+Latency: Mean=5.997859, Std=0.088351
+Latency MoE: 0.913000%
+-------------------------------------------------------
