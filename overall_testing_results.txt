@@ -1,0 +1,265 @@
+===== Running tests with 1 core(s) =====
+Running model with max_depth=3, min_samples_split=250
+Configuration: max_depth=3, min_samples_split=250, Cores=1
+Latency (p50 online): 0.001189151431201026
+-------------------------------------------------------
+Running model with max_depth=7, min_samples_split=1000
+Configuration: max_depth=7, min_samples_split=1000, Cores=1
+Latency (p50 online): 0.0011897001841571183
+-------------------------------------------------------
+Running model with max_depth=7, min_samples_split=250
+Configuration: max_depth=7, min_samples_split=250, Cores=1
+Latency (p50 online): 0.0011894851918332278
+-------------------------------------------------------
+Running model with max_depth=10, min_samples_split=70
+Configuration: max_depth=10, min_samples_split=70, Cores=1
+Latency (p50 online): 0.001173141326988116
+-------------------------------------------------------
+Running model with max_depth=10, min_samples_split=15
+Configuration: max_depth=10, min_samples_split=15, Cores=1
+Latency (p50 online): 0.0011771115900482982
+-------------------------------------------------------
+Running model with max_depth=20, min_samples_split=70
+Configuration: max_depth=20, min_samples_split=70, Cores=1
+Latency (p50 online): 0.001201062049018219
+-------------------------------------------------------
+Running model with max_depth=20, min_samples_split=15
+Configuration: max_depth=20, min_samples_split=15, Cores=1
+Latency (p50 online): 0.0011779765950050206
+-------------------------------------------------------
+Running model with max_depth=25, min_samples_split=5
+Configuration: max_depth=25, min_samples_split=5, Cores=1
+Latency (p50 online): 0.001194761633872986
+-------------------------------------------------------
+Running model with max_depth=25, min_samples_split=2
+Configuration: max_depth=25, min_samples_split=2, Cores=1
+Latency (p50 online): 0.001183288561180234
+-------------------------------------------------------
+Running model with max_depth=30, min_samples_split=5
+Configuration: max_depth=30, min_samples_split=5, Cores=1
+Latency (p50 online): 0.0011790521938819438
+-------------------------------------------------------
+Running model with max_depth=30, min_samples_split=2
+Configuration: max_depth=30, min_samples_split=2, Cores=1
+Latency (p50 online): 0.001174332674127072
+-------------------------------------------------------
+Running model with max_depth=None, min_samples_split=5
+Configuration: max_depth=None, min_samples_split=5, Cores=1
+Latency (p50 online): 0.001180581676075235
+-------------------------------------------------------
+Running model with max_depth=None, min_samples_split=2
+Configuration: max_depth=None, min_samples_split=2, Cores=1
+Latency (p50 online): 0.0011808446578215807
+-------------------------------------------------------
+===== Running tests with 2 core(s) =====
+Running model with max_depth=3, min_samples_split=250
+Configuration: max_depth=3, min_samples_split=250, Cores=2
+Latency (p50 online): 0.001185043541016057
+-------------------------------------------------------
+Running model with max_depth=7, min_samples_split=1000
+Configuration: max_depth=7, min_samples_split=1000, Cores=2
+Latency (p50 online): 0.0011721406530123203
+-------------------------------------------------------
+Running model with max_depth=7, min_samples_split=250
+Configuration: max_depth=7, min_samples_split=250, Cores=2
+Latency (p50 online): 0.0011793324269820005
+-------------------------------------------------------
+Running model with max_depth=10, min_samples_split=70
+Configuration: max_depth=10, min_samples_split=70, Cores=2
+Latency (p50 online): 0.0011807233120780438
+-------------------------------------------------------
+Running model with max_depth=10, min_samples_split=15
+Configuration: max_depth=10, min_samples_split=15, Cores=2
+Latency (p50 online): 0.0011822155960835516
+-------------------------------------------------------
+Running model with max_depth=20, min_samples_split=70
+Configuration: max_depth=20, min_samples_split=70, Cores=2
+Latency (p50 online): 0.0011864335860591383
+-------------------------------------------------------
+Running model with max_depth=20, min_samples_split=15
+Configuration: max_depth=20, min_samples_split=15, Cores=2
+Latency (p50 online): 0.0011870352500118315
+-------------------------------------------------------
+Running model with max_depth=25, min_samples_split=5
+Configuration: max_depth=25, min_samples_split=5, Cores=2
+Latency (p50 online): 0.0011730005010031164
+-------------------------------------------------------
+Running model with max_depth=25, min_samples_split=2
+Configuration: max_depth=25, min_samples_split=2, Cores=2
+Latency (p50 online): 0.0011749147940427066
+-------------------------------------------------------
+Running model with max_depth=30, min_samples_split=5
+Configuration: max_depth=30, min_samples_split=5, Cores=2
+Latency (p50 online): 0.0011714740609750152
+-------------------------------------------------------
+Running model with max_depth=30, min_samples_split=2
+Configuration: max_depth=30, min_samples_split=2, Cores=2
+Latency (p50 online): 0.0011849268849473446
+-------------------------------------------------------
+Running model with max_depth=None, min_samples_split=5
+Configuration: max_depth=None, min_samples_split=5, Cores=2
+Latency (p50 online): 0.0011800544338766486
+-------------------------------------------------------
+Running model with max_depth=None, min_samples_split=2
+Configuration: max_depth=None, min_samples_split=2, Cores=2
+Latency (p50 online): 0.0011956686980556697
+-------------------------------------------------------
+===== Running tests with 4 core(s) =====
+Running model with max_depth=3, min_samples_split=250
+Configuration: max_depth=3, min_samples_split=250, Cores=4
+Latency (p50 online): 0.0011863645049743354
+-------------------------------------------------------
+Running model with max_depth=7, min_samples_split=1000
+Configuration: max_depth=7, min_samples_split=1000, Cores=4
+Latency (p50 online): 0.0011802693998906762
+-------------------------------------------------------
+Running model with max_depth=7, min_samples_split=250
+Configuration: max_depth=7, min_samples_split=250, Cores=4
+Latency (p50 online): 0.0011806041160598397
+-------------------------------------------------------
+Running model with max_depth=10, min_samples_split=70
+Configuration: max_depth=10, min_samples_split=70, Cores=4
+Latency (p50 online): 0.001180466468213126
+-------------------------------------------------------
+Running model with max_depth=10, min_samples_split=15
+Configuration: max_depth=10, min_samples_split=15, Cores=4
+Latency (p50 online): 0.0011696459669619799
+-------------------------------------------------------
+Running model with max_depth=20, min_samples_split=70
+Configuration: max_depth=20, min_samples_split=70, Cores=4
+Latency (p50 online): 0.0011822411299217492
+-------------------------------------------------------
+Running model with max_depth=20, min_samples_split=15
+Configuration: max_depth=20, min_samples_split=15, Cores=4
+Latency (p50 online): 0.001191767310956493
+-------------------------------------------------------
+Running model with max_depth=25, min_samples_split=5
+Configuration: max_depth=25, min_samples_split=5, Cores=4
+Latency (p50 online): 0.0011794808069244026
+-------------------------------------------------------
+Running model with max_depth=25, min_samples_split=2
+Configuration: max_depth=25, min_samples_split=2, Cores=4
+Latency (p50 online): 0.0011907730740495026
+-------------------------------------------------------
+Running model with max_depth=30, min_samples_split=5
+Configuration: max_depth=30, min_samples_split=5, Cores=4
+Latency (p50 online): 0.0011675978291314096
+-------------------------------------------------------
+Running model with max_depth=30, min_samples_split=2
+Configuration: max_depth=30, min_samples_split=2, Cores=4
+Latency (p50 online): 0.0011852450359147043
+-------------------------------------------------------
+Running model with max_depth=None, min_samples_split=5
+Configuration: max_depth=None, min_samples_split=5, Cores=4
+Latency (p50 online): 0.0011697953711263835
+-------------------------------------------------------
+Running model with max_depth=None, min_samples_split=2
+Configuration: max_depth=None, min_samples_split=2, Cores=4
+Latency (p50 online): 0.0011865931118372828
+-------------------------------------------------------
+===== Running tests with 8 core(s) =====
+Running model with max_depth=3, min_samples_split=250
+Configuration: max_depth=3, min_samples_split=250, Cores=8
+Latency (p50 online): 0.0011849935080390423
+-------------------------------------------------------
+Running model with max_depth=7, min_samples_split=1000
+Configuration: max_depth=7, min_samples_split=1000, Cores=8
+Latency (p50 online): 0.0011767942139413207
+-------------------------------------------------------
+Running model with max_depth=7, min_samples_split=250
+Configuration: max_depth=7, min_samples_split=250, Cores=8
+Latency (p50 online): 0.0011849404918029905
+-------------------------------------------------------
+Running model with max_depth=10, min_samples_split=70
+Configuration: max_depth=10, min_samples_split=70, Cores=8
+Latency (p50 online): 0.001194796885130927
+-------------------------------------------------------
+Running model with max_depth=10, min_samples_split=15
+Configuration: max_depth=10, min_samples_split=15, Cores=8
+Latency (p50 online): 0.0011887854100205003
+-------------------------------------------------------
+Running model with max_depth=20, min_samples_split=70
+Configuration: max_depth=20, min_samples_split=70, Cores=8
+Latency (p50 online): 0.0011861227171029896
+-------------------------------------------------------
+Running model with max_depth=20, min_samples_split=15
+Configuration: max_depth=20, min_samples_split=15, Cores=8
+Latency (p50 online): 0.0011861268470529467
+-------------------------------------------------------
+Running model with max_depth=25, min_samples_split=5
+Configuration: max_depth=25, min_samples_split=5, Cores=8
+Latency (p50 online): 0.0011806419149506836
+-------------------------------------------------------
+Running model with max_depth=25, min_samples_split=2
+Configuration: max_depth=25, min_samples_split=2, Cores=8
+Latency (p50 online): 0.00118125753197819
+-------------------------------------------------------
+Running model with max_depth=30, min_samples_split=5
+Configuration: max_depth=30, min_samples_split=5, Cores=8
+Latency (p50 online): 0.0011826175060123205
+-------------------------------------------------------
+Running model with max_depth=30, min_samples_split=2
+Configuration: max_depth=30, min_samples_split=2, Cores=8
+Latency (p50 online): 0.0011866524398792535
+-------------------------------------------------------
+Running model with max_depth=None, min_samples_split=5
+Configuration: max_depth=None, min_samples_split=5, Cores=8
+Latency (p50 online): 0.0011771666530985385
+-------------------------------------------------------
+Running model with max_depth=None, min_samples_split=2
+Configuration: max_depth=None, min_samples_split=2, Cores=8
+Latency (p50 online): 0.0011854470549151302
+-------------------------------------------------------
+===== Running tests with 16 core(s) =====
+Running model with max_depth=3, min_samples_split=250
+Configuration: max_depth=3, min_samples_split=250, Cores=16
+Latency (p50 online): 0.0011932553129736334
+-------------------------------------------------------
+Running model with max_depth=7, min_samples_split=1000
+Configuration: max_depth=7, min_samples_split=1000, Cores=16
+Latency (p50 online): 0.001190022321883589
+-------------------------------------------------------
+Running model with max_depth=7, min_samples_split=250
+Configuration: max_depth=7, min_samples_split=250, Cores=16
+Latency (p50 online): 0.0011870830238331109
+-------------------------------------------------------
+Running model with max_depth=10, min_samples_split=70
+Configuration: max_depth=10, min_samples_split=70, Cores=16
+Latency (p50 online): 0.0011954947251360864
+-------------------------------------------------------
+Running model with max_depth=10, min_samples_split=15
+Configuration: max_depth=10, min_samples_split=15, Cores=16
+Latency (p50 online): 0.0011861671949736773
+-------------------------------------------------------
+Running model with max_depth=20, min_samples_split=70
+Configuration: max_depth=20, min_samples_split=70, Cores=16
+Latency (p50 online): 0.0011874329319689423
+-------------------------------------------------------
+Running model with max_depth=20, min_samples_split=15
+Configuration: max_depth=20, min_samples_split=15, Cores=16
+Latency (p50 online): 0.0011781250201165676
+-------------------------------------------------------
+Running model with max_depth=25, min_samples_split=5
+Configuration: max_depth=25, min_samples_split=5, Cores=16
+Latency (p50 online): 0.0011785346460528672
+-------------------------------------------------------
+Running model with max_depth=25, min_samples_split=2
+Configuration: max_depth=25, min_samples_split=2, Cores=16
+Latency (p50 online): 0.0011822745730169118
+-------------------------------------------------------
+Running model with max_depth=30, min_samples_split=5
+Configuration: max_depth=30, min_samples_split=5, Cores=16
+Latency (p50 online): 0.001193973100045696
+-------------------------------------------------------
+Running model with max_depth=30, min_samples_split=2
+Configuration: max_depth=30, min_samples_split=2, Cores=16
+Latency (p50 online): 0.0012015082128345967
+-------------------------------------------------------
+Running model with max_depth=None, min_samples_split=5
+Configuration: max_depth=None, min_samples_split=5, Cores=16
+Latency (p50 online): 0.001180853069992736
+-------------------------------------------------------
+Running model with max_depth=None, min_samples_split=2
+Configuration: max_depth=None, min_samples_split=2, Cores=16
+Latency (p50 online): 0.0011781348190270365
+-------------------------------------------------------
