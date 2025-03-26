@@ -7,10 +7,11 @@ from sklearn.metrics import accuracy_score
 import sys
 
 # Parse command-line arguments for classifier parameters.
-if len(sys.argv) > 3:
+if len(sys.argv) > 4:
     arg_n_estimators = sys.argv[1]
     arg_max_depth = sys.argv[2]
     arg_min_samples_split = sys.argv[3]
+    arg_n_jobs = sys.argv[4]
 
     # If the max_depth argument is "None", convert it to a Python None, otherwise convert to int.
     if arg_max_depth.lower() == "none":
@@ -20,6 +21,7 @@ if len(sys.argv) > 3:
 
     n_estimators_param = int(arg_n_estimators)
     min_samples_split_param = int(arg_min_samples_split)
+    n_jobs_param = int(arg_n_jobs)
 else:
     # Default values if no arguments are provided.
     print("Yo brotha\n")
@@ -67,7 +69,7 @@ y_train = y_train.squeeze()
 y_test = y_test.squeeze()
 
 # Create the classifier
-tree = RandomForestClassifier(n_estimators = n_estimators_param, max_depth = max_depth_param, min_samples_split = min_samples_split_param, random_state = 29)
+tree = RandomForestClassifier(n_estimators = n_estimators_param, max_depth = max_depth_param, min_samples_split = min_samples_split_param, n_jobs = n_jobs_param, random_state = 29)
 start_time = time.perf_counter()
 tree.fit(X_train, y_train)
 end_time = time.perf_counter()
