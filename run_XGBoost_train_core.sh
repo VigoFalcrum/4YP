@@ -24,13 +24,20 @@ for core in "${core_counts[@]}"; do
     num_configs=${#max_depths[@]}
     # Iterate over each model configuration.
     for (( i=0; i<num_configs; i++ )); do
-	n_estimators=${n_estimators[$i]}
-        max_depth=${max_depths[$i]}
-        learning_rate=${learning_rate[$i]}
+        # Hardcode the parameters for i=0 due to an unexplained bug
+        if [ "$i" -eq 0 ]; then
+            n_estimators=10
+            max_depth=2
+            learning_rate=0.3
+        else
+	    n_estimators=${n_estimators[$i]}
+            max_depth=${max_depths[$i]}
+            learning_rate=${learning_rate[$i]}
+        fi
         echo "Running model with n_estimators=${n_estimators}, max_depth=${max_depth}, learning_rate=${learning_rate}"
         
         # Run XGBoost_train.py once with the specified core count.
-        latency=$(OMP_NUM_THREADS=$core python3 RF_train.py "$n_estimators" "$max_depth" "$learning_rate" "$core")
+        latency=$(OMP_NUM_THREADS=$core python3 XGBoost_train.py "$n_estimators" "$max_depth" "$learning_rate" "$core")
         
         # Append the result to overall_results.txt.
         echo "${latency} ${n_estimators} ${max_depth} ${learning_rate} ${core}" >> $overall_results
