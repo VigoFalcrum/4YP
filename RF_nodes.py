@@ -5,6 +5,7 @@ import time
 import pandas as pd
 from sklearn.metrics import accuracy_score
 import sys
+import pickle
 
 # Data preprocessing
 datatypes = {'srcip' : int, 'sport' : int, 'dstip' : int, 'dsport' : int, 'proto' : int, 'state' : int, 'dur' : float, \
@@ -53,10 +54,13 @@ y_test = y_test.squeeze()
 n_estimators=[5, 5, 5, 15, 15, 15, 45, 45, 45, 90, 90, 90, 140, 140, 140, 200, 200, 200, 270, 270, 270]
 max_depths=[7, 15, 25, 7, 15, 25, 7, 15, 25, 7, 15, 25, 7, 15, 25, 7, 15, 25, 7, 15, 25]
 
+with open("RF_nodes.txt", "w") as f:
+    print(f"n_estimators max_depth nodes", file=f)
+
 for i in range(len(n_estimators)):
     filename = f"RF_{n_estimators[i]}_{max_depths[i]}.pkl"
     with open(filename, 'rb') as file:
         clf = pickle.load(file)
-    for estimator in clf.estimators_:
-        total_nodes_rf += estimator.tree_.node_count
-    print(f"{n_estimators} {max_depth} {total_nodes_rf}"
+    total_nodes = sum(estimator.tree_.node_count for estimator in clf.estimators_)
+    with open("RF_nodes.txt", "a") as f:
+        print(f"{n_estimators[i]} {max_depths[i]} {total_nodes}", file=f)
