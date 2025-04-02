@@ -24,18 +24,18 @@ for core in "${core_counts[@]}"; do
     num_configs=${#max_depths[@]}
     # Iterate over each model configuration.
     for (( i=0; i<num_configs; i++ )); do
-	n_estimators=${n_estimators[$i]}
-        max_depth=${max_depths[$i]}
-        min_samples_split=${min_samples_split[$i]}
-        echo "Running model with n_estimators=${n_estimators}, max_depth=${max_depth}, min_samples_split=${min_samples_split}"
+	n_estimators_v=${n_estimators[$i]}
+        max_depth_v=${max_depths[$i]}
+        min_samples_split_v=${min_samples_split[$i]}
+        echo "Running model with n_estimators=${n_estimators_v}, max_depth=${max_depth_v}, min_samples_split=${min_samples_split_v}"
         
         # Run RF_train.py once with the specified core count.
-        latency=$(OMP_NUM_THREADS=1 python3 RF_train.py "$n_estimators" "$max_depth" "$min_samples_split" "$core")
+        latency=$(OMP_NUM_THREADS=1 python3 RF_train.py "$n_estimators_v" "$max_depth_v" "$min_samples_split_v" "$core")
         
         # Append the result to overall_results.txt.
-        echo "${latency} ${n_estimators} ${max_depth} ${min_samples_split} ${core}" >> $overall_results
+        echo "${latency} ${n_estimators_v} ${max_depth_v} ${min_samples_split_v} ${core}" >> $overall_results
         
-        echo "Completed model with n_estimators=${n_estimators}, max_depth=${max_depth}, min_samples_split=${min_samples_split} for ${core} core(s) in ${latency} seconds"
+        echo "Completed model with n_estimators=${n_estimators_v}, max_depth=${max_depth_v}, min_samples_split=${min_samples_split_v} for ${core} core(s) in ${latency} seconds"
         echo "-------------------------------------------------------"
     done
 done

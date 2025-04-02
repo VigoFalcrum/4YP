@@ -5,6 +5,7 @@ import time
 import pandas as pd
 from sklearn.metrics import accuracy_score
 import sys
+import pickle
 
 # Parse command-line arguments for classifier parameters.
 if len(sys.argv) > 4:
@@ -20,7 +21,7 @@ if len(sys.argv) > 4:
         max_depth_param = int(arg_max_depth)
 
     n_estimators_param = int(arg_n_estimators)
-    learning_rate_param = int(arg_learning_rate)
+    learning_rate_param = float(arg_learning_rate)
     n_jobs_param = int(arg_n_jobs)
 else:
     # Default values if no arguments are provided.

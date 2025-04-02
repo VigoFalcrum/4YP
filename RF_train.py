@@ -5,6 +5,7 @@ import time
 import pandas as pd
 from sklearn.metrics import accuracy_score
 import sys
+import pickle
 
 # Parse command-line arguments for classifier parameters.
 if len(sys.argv) > 4:
