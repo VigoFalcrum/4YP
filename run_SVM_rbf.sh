@@ -1,37 +1,30 @@
 #!/bin/bash
-# run_models.sh
+# run_svm.sh
 # This script iterates over different dataset fractions and runs SVM.py for each fraction.
-# SVM.py must accept one command-line argument: the fraction (a float)
-# and it must print three lines:
-#   1. training latency
-#   2. testing latency
-#   3. accuracy
+# SVM.py must accept two command-line arguments: kernel type and frac.
+# It prints a single number (the training latency) and saves the model into a pickle file.
 # The overall summary is saved in SVM_testing_results.txt.
 
-# Define the dataset fractions.
-frac=(0.001 0.002 0.004)
+# Define the dataset fractions to test.
+frac=(0.001 0.002 0.004 0.008)
 
 # Overall results file for summary.
 overall_results="SVM_testing_results.txt"
 > "$overall_results"
-echo -e "frac\ttraining_time\ttesting_time\taccuracy" >> "$overall_results"
+echo -e "frac\ttraining_latency" >> "$overall_results"
 
 # Iterate over each fraction.
-num_configs=${#frac[@]}
-for (( i=0; i<num_configs; i++ )); do
-    frac_v=${frac[$i]}
-    echo "Running model with frac=${frac_v}"
+for (( i=0; i<${#frac[@]}; i++ )); do
+    frac_val=${frac[$i]}
+    echo "Running SVM with kernel rbf and frac=${frac_val}"
     
-    # Run SVM.py with the fraction as an argument and capture its output.
-    output=$(python3 SVM.py "$frac_v")
+    # Run SVM.py with kernel type 'rbf' and the current fraction.
+    training_latency=$(python3 SVM.py "rbf" "$frac_val")
     
-    # Read the three lines of output into variables.
-    IFS=$'\n' read -r training_time testing_time accuracy <<< "$output"
+    # Append the fraction and training latency to the results file.
+    echo -e "${frac_val}\t${training_latency}" >> "$overall_results"
     
-    # Append a single line to the overall results file.
-    echo -e "${frac_v}\t${training_time}\t${testing_time}\t${accuracy}" >> "$overall_results"
-    
-    echo "Completed model with frac=${frac_v}: training_time=${training_time}, testing_time=${testing_time}, accuracy=${accuracy}"
+    echo "Completed: training_latency = ${training_latency} seconds for frac=${frac_val}"
     echo "-------------------------------------------------------"
 done
 
