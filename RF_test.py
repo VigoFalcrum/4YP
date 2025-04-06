@@ -5,6 +5,24 @@ import time
 import pandas as pd
 from sklearn.metrics import accuracy_score
 import sys
+import pickle
+
+# Parse command-line arguments for classifier parameters.
+if len(sys.argv) > 3:
+    arg_max_depth = sys.argv[2]
+    arg_n_estimators = sys.argv[1]
+    arg_n_jobs = sys.argv[3]
+
+    # If the max_depth argument is "None", convert it to a Python None, otherwise convert to int.
+    if arg_max_depth.lower() == "none":
+        max_depth_param = None
+    else:
+        max_depth_param = int(arg_max_depth)
+    n_estimators_param = int(arg_n_estimators)
+    n_jobs_param = arg_n_jobs
+else:
+    # Default values if no arguments are provided.
+    print("Yo brotha\n")
 
 # Data preprocessing
 datatypes = {'srcip' : int, 'sport' : int, 'dstip' : int, 'dsport' : int, 'proto' : int, 'state' : int, 'dur' : float, \
@@ -45,23 +63,31 @@ y_test.columns = ['label']
 X_test = X_test.drop(X_test.index[0])
 y_test = y_test.drop(y_test.index[0])
 
-y_train = y_train.squeeze()
-y_test = y_test.squeeze()
+# Open the classifier
+filename = f"RF_{n_estimators_param}_{max_depth_param}.pkl"
+with open('model.pkl', 'rb') as f:
+    clf = pickle.load(f)
+clf.set_params(n_jobs=n_jobs_param)
 
-# FINISHED DATASET PREPROCESSING
+# Draw 100 random samples (as a DataFrame) from X_test
+random_samples = X_test.sample(n=100, random_state=29)
 
-n_estimators=[5, 5, 5, 15, 15, 15, 45, 45, 45, 90, 90, 90, 140, 140, 140, 200, 200, 200, 270, 270, 270]
-max_depths=[7, 15, 25, 7, 15, 25, 7, 15, 25, 7, 15, 25, 7, 15, 25, 7, 15, 25, 7, 15, 25]
+# Iterate over each of the 100 random samples
+start_time = time.perf_counter()
+for i in range(100):
+    # Select a single sample as a DataFrame (preserving column names)
+    sample = random_samples.iloc[[i]]
+    clf.predict(sample)
+end_time = time.perf_counter()
 
-for i in range(len(n_estimators)):
-    filename = f"RF_{n_estimators[i]}_{max_depths[i]}.pkl"
-    with open(filename, 'rb') as file:
-        clf = pickle.load(file)
-    
-    y_pred = clf.predict(X_test)
-    # Ensure y_test is of integer type
-    y_test_int = y_test.astype('int64')
-    
-    print(f"RF model with {n_estimators[i]} n_estimators and {max_depths[i]} max_depth")
-    print("Model accuracy score with criterion entropy: {0:0.4f}".format(
-          accuracy_score(y_test_int, y_pred)))
+total_latency = end_time - start_time
+
+# Loop overhead
+start_time = time.perf_counter()
+for i in range(100):
+    # Select a single sample as a DataFrame (preserving column names)
+    sample = random_samples.iloc[[i]]
+end_time = time.perf_counter()
+
+total_latency = total_latency - end_time + start_time
+print(total_latency/100)
