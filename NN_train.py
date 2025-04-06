@@ -9,6 +9,7 @@ import pandas as pd
 import numpy as np
 import random
 import time
+import sys
 
 # Set random seeds for reproducibility
 torch.manual_seed(29)
@@ -112,7 +113,7 @@ class DeepNN(nn.Module):
 input_size, hidden_size, num_classes = X_train.shape[1], layer_width, 2
 model = DeepNN(input_size, hidden_size, nn_depth, num_classes).to(device)
 criterion = nn.CrossEntropyLoss()
-optimizer = optim.Adam(model.parameters(), lr=0.01)
+optimizer = optim.Adam(model.parameters(), lr=0.005)
 
 # Training loop
 num_epochs = 10
@@ -124,7 +125,7 @@ for epoch in range(num_epochs):
     optimizer.zero_grad()
     loss.backward()
     optimizer.step()
-    #print(f'Epoch [{epoch+1}/{num_epochs}], Loss: {loss.item():.4f}')
+   # print(f'Epoch [{epoch+1}/{num_epochs}], Loss: {loss.item():.4f}')
 end_time = time.perf_counter()
 
 filename = f"NN_{nn_depth}_{layer_width}.pth"

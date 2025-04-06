@@ -1,10 +1,26 @@
-from sklearn.naive_bayes import GaussianNB
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
 import numpy as np
 import time
 import pandas as pd
-from sklearn.metrics import accuracy_score, classification_report
+from sklearn.metrics import accuracy_score
 import sys
+
+# Parse command-line arguments for classifier parameters.
+if len(sys.argv) > 2:
+     arg_max_depth = sys.argv[1]
+     arg_min_samples_split = sys.argv[2]
+
+     # If the max_depth argument is "None", convert it to a Python None, otherwise convert to int.
+     if arg_max_depth.lower() == "none":
+         max_depth_param = None
+     else:
+         max_depth_param = int(arg_max_depth)
+
+     min_samples_split_param = int(arg_min_samples_split)
+else:
+     # Default values if no arguments are provided.
+     print("Yo brotha\n")
 
 # Data preprocessing
 datatypes = {'srcip' : int, 'sport' : int, 'dstip' : int, 'dsport' : int, 'proto' : int, 'state' : int, 'dur' : float, \
@@ -45,27 +61,19 @@ y_test.columns = ['label']
 X_test = X_test.drop(X_test.index[0])
 y_test = y_test.drop(y_test.index[0])
 
-y_train = y_train.squeeze()
-y_test = y_test.squeeze()
+#max_depth_param = 30
+#min_samples_split_param = 5
 
 # Create the classifier
-clf = GaussianNB()
+clf = DecisionTreeClassifier(max_depth=max_depth_param, min_samples_split=min_samples_split_param)
+clf.fit(X_train, y_train)
 
+total_latency = 0
+random_samples = X_test.sample(n = 1000, random_state = 29)
+
+# Method 2
 start_time = time.perf_counter()
-for i in range(10):
-    clf.fit(X_train, y_train)
+for i in range(0, 1000):
+	clf.predict(random_samples.iloc[[i]])
 end_time = time.perf_counter()
-print((end_time - start_time)/10)
-
-# Predict on the test set
-start_time = time.perf_counter()
-for i in range(100):
-    y_pred = clf.predict(X_test)
-end_time = time.perf_counter()
-print((end_time - start_time)/100)
-
-# Evaluate the classifier's performance
-accuracy = accuracy_score(y_test, y_pred)
-print("Accuracy:", accuracy)
-print("\nClassification Report:")
-print(classification_report(y_test, y_pred))
+print((end_time - start_time)/1000)

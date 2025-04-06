@@ -6,7 +6,7 @@
 # The overall summary is saved in SVM_testing_results.txt.
 
 # Define the dataset fractions to test.
-frac=(0.001 0.002 0.004 0.008)
+frac=(0.001 0.002 0.004 0.008 0.016 0.032 0.05)
 
 # Overall results file for summary.
 overall_results="SVM_testing_results.txt"
