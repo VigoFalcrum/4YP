@@ -13,13 +13,9 @@ if len(sys.argv) > 3:
     arg_n_estimators = sys.argv[1]
     arg_n_jobs = sys.argv[3]
 
-    # If the max_depth argument is "None", convert it to a Python None, otherwise convert to int.
-    if arg_max_depth.lower() == "none":
-        max_depth_param = None
-    else:
-        max_depth_param = int(arg_max_depth)
+    max_depth_param = int(arg_max_depth)
     n_estimators_param = int(arg_n_estimators)
-    n_jobs_param = arg_n_jobs
+    n_jobs_param = int(arg_n_jobs)
 else:
     # Default values if no arguments are provided.
     print("Yo brotha\n")
@@ -65,7 +61,7 @@ y_test = y_test.drop(y_test.index[0])
 
 # Open the classifier
 filename = f"RF_{n_estimators_param}_{max_depth_param}.pkl"
-with open('model.pkl', 'rb') as f:
+with open(filename, 'rb') as f:
     clf = pickle.load(f)
 clf.set_params(n_jobs=n_jobs_param)
 
