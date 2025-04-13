@@ -85,9 +85,11 @@ def test_classifier():
     X_test = pd.read_parquet("X_test_processed.parquet")
     y_test = pd.read_parquet("y_test_processed.parquet")
     y_test = y_test.values.ravel()
+    # Draw 100 random samples (as a DataFrame) from X_test
+    random_samples = X_test.sample(n=100, random_state=29)
 
     # Load the trained classifier
-    filename = f"RF_{n_estimators}_{max_depth}.pkl"
+    filename = f"RF_{n_estimators_param}_{max_depth_param}.pkl"
     with open(filename, 'rb') as f:
         clf = pickle.load(f)
 
