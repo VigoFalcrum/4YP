@@ -99,6 +99,7 @@ def test_classifier():
     inference_time = end_time - start_time
 
     # Estimating the Python loop overhead
+    start_time = time.perf_counter()
     for i in range(100):
         # Select a single sample as a DataFrame (preserving column names)
         sample = random_samples.iloc[[i]]
