@@ -4,6 +4,8 @@ import time
 import subprocess
 import pandas as pd
 import numpy as np
+import pickle
+import sklearn
 
 def preprocess_data():
     # Data preprocessing:
@@ -38,7 +40,7 @@ def preprocess_data():
     
     # Save preprocessed training data for the subprocess
     X_test.to_parquet("X_test_processed.parquet")
-    y_test.to_parquet("y_test_processed.parquet")
+    y_test.to_frame().to_parquet("y_test_processed.parquet")
     print("✅ Preprocessing complete and data saved.")
 
 def test_classifier():
@@ -55,8 +57,10 @@ def test_classifier():
     # Draw 100 random samples (as a DataFrame) from X_test
     random_samples = X_test.sample(n=100, random_state=29)
     
-    # Create the classifier
-    tree = GaussianNB()
+    # Load the classifier
+    with open('NB.pkl', 'rb') as f:
+        tree = pickle.load(f)
+
     
     start_time = time.perf_counter()
     for i in range(100):
@@ -65,7 +69,8 @@ def test_classifier():
         tree.predict(sample)
     end_time = time.perf_counter()
     avg_time = (end_time - start_time) / 100
-    print("Average testing time per iteration: {:.4f} seconds".format(avg_time))
+    print(avg_time)
+    print(sklearn.__version__)
 
 if __name__ == '__main__':
     # If the "--test" flag is provided, only run the testing section.

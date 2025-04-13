@@ -4,6 +4,8 @@ import time
 import subprocess
 import pandas as pd
 import numpy as np
+import pickle
+import sklearn
 
 def preprocess_data():
     # Data preprocessing:
@@ -50,8 +52,8 @@ def preprocess_data():
     y_test = y_test.squeeze()
     
     # Save preprocessed training data for the subprocess
-    X_train.to_pickle("X_train_processed.pkl")
-    y_train.to_pickle("y_train_processed.pkl")
+    X_train.to_parquet("X_train_processed.parquet")
+    y_train.to_frame().to_parquet("y_train_processed.parquet")
     print("✅ Preprocessing complete and data saved.")
 
 def train_classifier():
@@ -61,18 +63,22 @@ def train_classifier():
     import pandas as pd
     
     # Load the preprocessed data
-    X_train = pd.read_pickle("X_train_processed.pkl")
-    y_train = pd.read_pickle("y_train_processed.pkl")
+    X_train = pd.read_parquet("X_train_processed.parquet")
+    y_train = pd.read_parquet("y_train_processed.parquet")
+    y_train = y_train.values.ravel()
     
     # Create the classifier
     tree = GaussianNB()
     
     start_time = time.perf_counter()
-    for i in range(10):
-        tree.fit(X_train, y_train)
+    tree.fit(X_train, y_train)
     end_time = time.perf_counter()
-    avg_time = (end_time - start_time) / 10
+    avg_time = (end_time - start_time)
     print("Average training time per iteration: {:.4f} seconds".format(avg_time))
+
+    with open('NB.pkl', 'wb') as f:
+        pickle.dump(tree, f)
+    print(sklearn.__version__)
 
 if __name__ == '__main__':
     # If the "--train" flag is provided, only run the training section.
