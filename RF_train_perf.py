@@ -66,15 +66,15 @@ def preprocess_data():
     print("✅ Preprocessing complete and data saved.")
 
 def train_classifier():
-    # This branch expects sys.argv to be: [script, "--train", max_depth, min_samples_split]
-    if len(sys.argv) < 4:
+    # This branch expects sys.argv to be: [script, "--train", n_estimators, max_depth, min_samples_split, n_jobs]
+    if len(sys.argv) < 6:
         print("Usage: python3 RF_train_perf.py <n_estimators> <max_depth> <min_samples_split> <n_jobs>")
         sys.exit(1)
     # Skip the flag at index 1
-    arg_n_estimators = sys.argv[1]
-    arg_max_depth = sys.argv[2]
-    arg_min_samples_split = sys.argv[3]
-    arg_n_jobs = sys.argv[4]
+    arg_n_estimators = sys.argv[2]
+    arg_max_depth = sys.argv[3]
+    arg_min_samples_split = sys.argv[4]
+    arg_n_jobs = sys.argv[5]
 
     max_depth_param = int(arg_max_depth)
     n_estimators_param = int(arg_n_estimators)
@@ -87,7 +87,7 @@ def train_classifier():
     y_train = y_train.values.ravel()
 
     # Create the classifier
-    tree = RandomForestClassifier(n_estimators = n_estimators_param, max_depth = max_depth_param, min_samples_split = min_samples_split_param, n_jobs = n_jobs_param, random_state = 29)
+    clf = RandomForestClassifier(n_estimators = n_estimators_param, max_depth = max_depth_param, min_samples_split = min_samples_split_param, n_jobs = n_jobs_param, random_state = 29)
     start_time = time.perf_counter()
     clf.fit(X_train, y_train)
     end_time = time.perf_counter()
@@ -103,7 +103,7 @@ if __name__ == '__main__':
         train_classifier()
     else:
         # Main process: parse parameters and run preprocessing.
-        if len(sys.argv) < 3:
+        if len(sys.argv) < 5:
             print("Usage: python3 RF_train_perf.py <n_estimators> <max_depth> <min_samples_split> <n_jobs>")
             sys.exit(1)
         preprocess_data()
