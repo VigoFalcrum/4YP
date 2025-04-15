@@ -69,3 +69,4 @@ clf.fit(X_train, y_train)
 end_time = time.perf_counter()
 print(end_time - start_time)
 
+print("Tree depth:", clf.get_depth())
