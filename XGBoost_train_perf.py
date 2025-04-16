@@ -12,12 +12,12 @@ def preprocess_data():
     # This branch expects sys.argv to be: [script, n_estimators, max_depth, min_samples_split, n_jobs]
     arg_n_estimators = sys.argv[1]
     arg_max_depth = sys.argv[2]
-    arg_min_samples_split = sys.argv[3]
+    arg_learning_rate = sys.argv[3]
     arg_n_jobs = sys.argv[4]
 
     max_depth_param = int(arg_max_depth)
     n_estimators_param = int(arg_n_estimators)
-    min_samples_split_param = int(arg_min_samples_split)
+    learning_rate_param = float(arg_learning_rate)
     n_jobs_param = int(arg_n_jobs)
 
     # Data preprocessing:
@@ -73,12 +73,12 @@ def train_classifier():
     # Skip the flag at index 1
     arg_n_estimators = sys.argv[2]
     arg_max_depth = sys.argv[3]
-    arg_min_samples_split = sys.argv[4]
+    arg_learning_rate = sys.argv[4]
     arg_n_jobs = sys.argv[5]
 
     max_depth_param = int(arg_max_depth)
     n_estimators_param = int(arg_n_estimators)
-    min_samples_split_param = int(arg_min_samples_split)
+    learning_rate_param = float(arg_learning_rate)
     n_jobs_param = int(arg_n_jobs)
 
     # Load the preprocessed data
@@ -87,7 +87,7 @@ def train_classifier():
     y_train = y_train.values.ravel()
 
     # Create the classifier
-    tree = xgb.XGBClassifier(objective="binary:logistic", max_depth=max_depth_param, learning_rate=learning_rate_param, n_estimators=n_estimators_param, use_label_encoder=False, eval_metric="logloss", n_jobs=n_jobs_param, random_state=29)
+    clf = xgb.XGBClassifier(objective="binary:logistic", max_depth=max_depth_param, learning_rate=learning_rate_param, n_estimators=n_estimators_param, use_label_encoder=False, eval_metric="logloss", n_jobs=n_jobs_param, random_state=29)
     start_time = time.perf_counter()
     clf.fit(X_train, y_train)
     end_time = time.perf_counter()
@@ -104,7 +104,7 @@ if __name__ == '__main__':
     else:
         # Main process: parse parameters and run preprocessing.
         if len(sys.argv) < 5:
-            print("Usage: python3 XGBoost_train_perf.py <n_estimators> <max_depth> <min_samples_split> <n_jobs>")
+            print("Usage: python3 XGBoost_train_perf.py <n_estimators> <max_depth> <learning_rate> <n_jobs>")
             sys.exit(1)
         preprocess_data()
         # Launch the training subprocess with additional arguments.
