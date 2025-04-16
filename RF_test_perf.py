@@ -85,30 +85,27 @@ def test_classifier():
     X_test = pd.read_parquet("X_test_processed.parquet")
     y_test = pd.read_parquet("y_test_processed.parquet")
     y_test = y_test.values.ravel()
+
+    # Open the classifier
+    filename = f"RF_{n_estimators_param}_{max_depth_param}.pkl"
+    with open('model.pkl', 'rb') as f:
+        clf = pickle.load(f)
+    clf.set_params(n_jobs=n_jobs_param)
+    
     # Draw 100 random samples (as a DataFrame) from X_test
     random_samples = X_test.sample(n=100, random_state=29)
-
-    # Load the trained classifier
-    filename = f"RF_{n_estimators_param}_{max_depth_param}.pkl"
-    with open(filename, 'rb') as f:
-        clf = pickle.load(f)
-
+    
+    # Iterate over each of the 100 random samples
     start_time = time.perf_counter()
-    # Measuring inference time
     for i in range(100):
         # Select a single sample as a DataFrame (preserving column names)
         sample = random_samples.iloc[[i]]
         clf.predict(sample)
     end_time = time.perf_counter()
-    inference_time = end_time - start_time
 
-    # Estimating the Python loop overhead
-    start_time = time.perf_counter()
-    for i in range(100):
-        # Select a single sample as a DataFrame (preserving column names)
-        sample = random_samples.iloc[[i]]
-    end_time = time.perf_counter()
-    print((inference_time - end_time + start_time)/100)
+    total_latency = end_time - start_time
+
+    print(total_latency)
 
 if __name__ == '__main__':
     if "--test" in sys.argv:
@@ -119,5 +116,5 @@ if __name__ == '__main__':
             print("Usage: python3 RF_test_perf.py <n_estimators> <max_depth> <min_samples_split> <n_jobs>")
             sys.exit(1)
         preprocess_data()
-        # Launch the testing subprocess with additional arguments.
+        # Launch the training subprocess with additional arguments.
         subprocess.run([sys.executable, sys.argv[0], "--test", sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]])
