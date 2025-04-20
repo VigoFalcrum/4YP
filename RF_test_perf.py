@@ -88,24 +88,25 @@ def test_classifier():
 
     # Open the classifier
     filename = f"RF_{n_estimators_param}_{max_depth_param}.pkl"
-    with open('model.pkl', 'rb') as f:
+    with open(filename, 'rb') as f:
         clf = pickle.load(f)
     clf.set_params(n_jobs=n_jobs_param)
     
-    # Draw 100 random samples (as a DataFrame) from X_test
-    random_samples = X_test.sample(n=100, random_state=29)
-    
+    # Number of batches and batch‐size
+    n_batches  = 10
+    batch_size = 32_000
+
+    # Draw n_batches * batch_size random samples
+    random_samples = X_test.sample(n=n_batches * batch_size, random_state=29)
+
     # Iterate over each of the 100 random samples
     start_time = time.perf_counter()
-    for i in range(100):
-        # Select a single sample as a DataFrame (preserving column names)
-        sample = random_samples.iloc[[i]]
-        clf.predict(sample)
+    for i in range(n_batches):
+        batch = random_samples.iloc[i*batch_size:(i+1)*batch_size]
+        clf.predict(batch)
     end_time = time.perf_counter()
-
-    total_latency = end_time - start_time
-
-    print(total_latency)
+    latency = end_time - start_time
+    print("Training time:", latency)
 
 if __name__ == '__main__':
     if "--test" in sys.argv:
