@@ -75,7 +75,7 @@ class DeepNN(nn.Module):
     def forward(self, x):
         return self.net(x)
 
-model = DeepNN(X_dev.shape[1], layer_width, nn_depth).to(device)
+model = DeepNN(X_dev.shape[1], hidden_size, nn_depth).to(device)
 model.load_state_dict(torch.load(model_pth, map_location=device))
 model.eval()
 
