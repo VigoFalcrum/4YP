@@ -71,7 +71,7 @@ y_train = y_train.squeeze()
 
 scaler = StandardScaler()
 
-# X_train, _, y_train, _ = train_test_split(X_train, y_train, train_size=0.1, stratify=y_train, random_state=29)
+X_train, _, y_train, _ = train_test_split(X_train, y_train, train_size=0.1, stratify=y_train, random_state=29)
 
 X_train = torch.tensor(scaler.fit_transform(X_train), dtype=torch.float32).to(device)
 y_train = torch.tensor(y_train.values, dtype=torch.long).to(device)
@@ -123,4 +123,4 @@ end_time = time.perf_counter()
 filename = f"NN_{nn_depth}_{layer_width}.pth"
 torch.save(model.state_dict(), filename)
 
-print(end_time - start_time)
+print((end_time - start_time)/num_epochs)
