@@ -5,6 +5,8 @@ import numpy as np
 import torch
 import torch.nn as nn
 import joblib
+import time
+import math
 
 # ──────── Argument parsing ────────
 # Usage: infer.py <nn_depth> <hidden_size>
@@ -76,18 +78,20 @@ model = DeepNN(X_dev.shape[1], hidden_size, nn_depth).to(device)
 model.load_state_dict(torch.load(model_pth, map_location=device))
 model.eval()
 
+# ──────── Warm-up ────────
+for _ in range(5):
+    _ = model(batches[0][0])
+
 # ──────── Inference ────────
-all_preds, all_labels = [], []
+torch.cuda.synchronize()
+start_time = time.perf_counter()
+for i in range(5):
+    with torch.no_grad():
+        for bx, by in batches:
+            logits = model(bx)
+        
+torch.cuda.synchronize()
+end_time = time.perf_counter()
 
-with torch.no_grad():
-    for bx, by in batches:
-        logits = model(bx)
-        preds  = logits.argmax(dim=1)
-        all_preds.append(preds.cpu().numpy())
-        all_labels.append(by.cpu().numpy())
-
-all_preds  = np.concatenate(all_preds)
-all_labels = np.concatenate(all_labels)
-
-accuracy = (all_preds == all_labels).mean()
-print(f"Inference on {num_samples} samples → Accuracy: {accuracy*100:.2f}%")
+n_batches = math.ceil(len(y_np)/batch_size)
+print((end_time - start_time))
