@@ -2,7 +2,7 @@
 import sys
 import time
 import random
-
+import joblib
 import pandas as pd
 import numpy as np
 import torch
@@ -60,7 +60,7 @@ X_gpu = torch.from_numpy(X_np).float().to(device, non_blocking=True)
 y_gpu = torch.from_numpy(y_np).long().to(device, non_blocking=True)
 
 # ──────── Pre‑slice into on‑device batches ────────
-n_batches  = 10
+n_batches  = 6
 batch_size = 32_000
 batches = []
 for i in range(n_batches):
@@ -85,7 +85,7 @@ criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=0.005)
 
 # ──────── Warm‑up ────────
-print("Warmup batch →", file=sys.stderr)
+# print("Warmup batch →", file=sys.stderr)
 model.train()
 bx, by = batches[0]
 out = model(bx)
@@ -111,11 +111,13 @@ for t in range(trials):
 
     torch.cuda.synchronize()
     elapsed = time.perf_counter() - t0
-    print(f"Run {t+1}/{trials}: {elapsed:.4f}s", file=sys.stderr)
+    # print(f"Run {t+1}/{trials}: {elapsed:.4f}s", file=sys.stderr)
     times.append(elapsed)
 
 times = np.array(times)
-print(f"Mean latency: {times.mean():.4f}s ± {times.std():.4f}s over {trials} runs")
+# print(f"Mean latency: {times.mean():.4f}s ± {times.std():.4f}s over {trials} runs")
+print(times.mean())
 
-# ──────── Save weights ────────
+# ──────── Save the scaler and weights ────────
 torch.save(model.state_dict(), f"NN_{nn_depth}_{layer_width}.pth")
+joblib.dump(scaler, f"scaler_{nn_depth}_{layer_width}.pkl")

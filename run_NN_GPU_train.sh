@@ -3,6 +3,7 @@
 # This script runs NN_train.py for each combination of parameters:
 #   - depth: (1, 3, 5, 7)
 #   - hidden layer size: (32, 128, 512, 1024, 2048)
+#   - core count: (1, 2, 4, 8, 16, 32)
 #
 # NN_train.py should accept three command-line arguments:
 #   depth, hidden_layer_size, core_count
@@ -13,25 +14,28 @@
 # Define parameter arrays.
 depths=(2 3 5 7 9)
 hidden_sizes=(4 8 16 32 64)
+cores=(1)
 
 # Define output file and write header.
-results_file="nn_testing_results_jetson.txt"
+results_file="nn_GPU_results_relu_jetson.txt"
 > "$results_file"
 echo -e "depth\thidden_size\tlatency" >> "$results_file"
 
 # Iterate over each parameter combination.
 for depth in "${depths[@]}"; do
     for hidden in "${hidden_sizes[@]}"; do
-        echo "Running NN with depth=${depth}, hidden_size=${hidden}"
+        for core in "${cores[@]}"; do
+            echo "Running NN with depth=${depth}, hidden_size=${hidden}"
             
-        # Run the training script and capture the output.
-        latency=$(python3 NN_test_v2.py "$depth" "$hidden")
+            # Run the training script and capture the output.
+            latency=$(python3 NN_train_jetson_nano_v2.py "$hidden" "$depth")
             
-        # Append the parameters and resulting latency to the results file.
-        echo -e "${depth}\t${hidden}\t${latency}" >> "$results_file"
+            # Append the parameters and resulting latency to the results file.
+            echo -e "${depth}\t${hidden}\t${latency}" >> "$results_file"
             
-        echo "Completed NN with depth=${depth}, hidden_size=${hidden}: latency=${latency} seconds"
-        echo "-------------------------------------------------------"
+            echo "Completed NN with depth=${depth}, hidden_size=${hidden}: latency=${latency} seconds"
+            echo "-------------------------------------------------------"
+        done
     done
 done
 

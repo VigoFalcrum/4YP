@@ -15,7 +15,7 @@ depths=(2 3 5 7 9)
 hidden_sizes=(4 8 16 32 64)
 
 # Define output file and write header.
-results_file="nn_testing_results_jetson.txt"
+results_file="nn_online_testing_results_jetson.txt"
 > "$results_file"
 echo -e "depth\thidden_size\tlatency" >> "$results_file"
 
@@ -25,7 +25,7 @@ for depth in "${depths[@]}"; do
         echo "Running NN with depth=${depth}, hidden_size=${hidden}"
             
         # Run the training script and capture the output.
-        latency=$(python3 NN_test_v2.py "$depth" "$hidden")
+        latency=$(python3 NN_online_test.py "$depth" "$hidden")
             
         # Append the parameters and resulting latency to the results file.
         echo -e "${depth}\t${hidden}\t${latency}" >> "$results_file"
