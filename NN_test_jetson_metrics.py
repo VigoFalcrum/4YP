@@ -4,6 +4,8 @@ import pandas as pd
 import numpy as np
 import torch
 import torch.nn as nn
+import torch.optim as optim
+import ctypes
 import joblib
 import time
 import math
@@ -54,11 +56,13 @@ y_np  = y.values                  # 1‑D NumPy array
 X_dev = torch.from_numpy(X_np).float().to(device, non_blocking=True)
 y_dev = torch.from_numpy(y_np).long().to(device, non_blocking=True)
 
-num_samples = X_dev.size(0)
-batches     = [
-    (X_dev[i : min(i+batch_size, num_samples)],
-     y_dev[i : min(i+batch_size, num_samples)])
-    for i in range(0, num_samples, batch_size)
+n_batches  = 10
+batch_size = 32_000
+batches = []
+for i in range(n_batches):
+    start = i * batch_size
+    end   = start + batch_size
+    batches.append((X_dev[start:end], y_dev[start:end]))
 ]
 
 # ──────── Model Definition ────────
@@ -84,13 +88,16 @@ for _ in range(5):
 
 # ──────── Inference ────────
 torch.cuda.synchronize()
+cuda = ctypes.CDLL('libcudart.so')
+cuda.cudaProfilerStart()
 start_time = time.perf_counter()
+
 with torch.no_grad():
     for bx, by in batches:
         logits = model(bx)
 
 torch.cuda.synchronize()
+cuda.cudaProfilerStop()
 end_time = time.perf_counter()
 
-n_batches = math.ceil(len(y_np)/batch_size)
 print((end_time - start_time))
