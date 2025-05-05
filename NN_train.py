@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from torch.utils.data import TensorDataset, DataLoader
+from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import accuracy_score
@@ -10,22 +10,22 @@ import numpy as np
 import random
 import time
 import sys
+import joblib
 
 # Set random seeds for reproducibility
 torch.manual_seed(29)
 np.random.seed(29)
 random.seed(29)
-torch.cuda.empty_cache()
 
 # Parse command-line arguments for classifier parameters.
-if len(sys.argv) > 2:
+if len(sys.argv) > 3:
     arg_layer_width = sys.argv[1]
     arg_depth = sys.argv[2]
-   # arg_cores = sys.argv[3]
+    arg_cores = sys.argv[3]
 
     layer_width = int(arg_layer_width)
     nn_depth = int(arg_depth)
-   # cores = int(arg_cores)
+    cores = int(arg_cores)
 else:
     # Default values if no arguments are provided.
     print("Yo brotha\n")
@@ -33,11 +33,11 @@ else:
 # nn_depth = 4
 
 # Limit the CPU threadcount
-# torch.set_num_threads(cores)
+torch.set_num_threads(cores)
 
 # Check for GPU availability
 # device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-device = 'cuda'
+device = 'cpu'
 # print(f'Using device: {device}')
 
 # Data preprocessing
@@ -56,8 +56,8 @@ col_names = ['srcip', 'sport', 'dstip', 'dsport', 'proto', 'state', 'dur', 'sbyt
              'ackdat', 'is_sm_ips_ports', 'ct_state_ttl', 'ct_flw_http_mthd', 'ct_srv_src', \
              'ct_srv_dst', 'ct_dst_ltm', 'ct_src_ltm', 'ct_src_dport_ltm', 'ct_dst_sport_ltm', 'ct_dst_src_ltm']
 # Train data
-X_train_data = 'X_train_GPU.parquet'
-y_train_data = 'y_train_GPU.parquet'
+X_train_data = 'X_train.parquet'
+y_train_data = 'y_train.parquet'
 X_train = pd.read_parquet(X_train_data)
 y_train = pd.read_parquet(y_train_data)
 X_train = X_train.astype(datatypes)
@@ -83,13 +83,10 @@ y_train = y_train.squeeze()
 y_test = y_test.squeeze()
 
 scaler = StandardScaler()
-
-# X_train, _, y_train, _ = train_test_split(X_train, y_train, train_size=0.1, stratify=y_train, random_state=29)
-
 X_train = torch.tensor(scaler.fit_transform(X_train), dtype=torch.float32).to(device)
-X_test = torch.tensor(scaler.transform(X_test), dtype=torch.float32)
+X_test = torch.tensor(scaler.transform(X_test), dtype=torch.float32).to(device)
 y_train = torch.tensor(y_train.values, dtype=torch.long).to(device)
-y_test = torch.tensor(y_test.values, dtype=torch.long)
+y_test = torch.tensor(y_test.values, dtype=torch.long).to(device)
 
 # Define the Neural Network
 
@@ -129,11 +126,11 @@ for epoch in range(num_epochs):
     optimizer.zero_grad()
     loss.backward()
     optimizer.step()
-
-end_time = time.perf_counter()
    # print(f'Epoch [{epoch+1}/{num_epochs}], Loss: {loss.item():.4f}')
+end_time = time.perf_counter()
 
 filename = f"NN_{nn_depth}_{layer_width}.pth"
 torch.save(model.state_dict(), filename)
+joblib.dump(scaler, f"scaler_{nn_depth}_{layer_width}.pkl")
 
 print(end_time - start_time)

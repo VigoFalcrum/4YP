@@ -12,12 +12,12 @@
 # The output is logged in nn_results.txt in a tab-separated format.
 
 # Define parameter arrays.
-depths=(2 3 5 7 9)
-hidden_sizes=(4 8 16 32 64 128 256 512)
+depths=(2 5 7 9)
+hidden_sizes=(4 8 16 32 64 128 256 512 1024 1024)
 cores=(32)
 
 # Define output file and write header.
-results_file="NN_training_results.txt"
+results_file="NN_online_test_results.txt"
 > "$results_file"
 echo -e "depth\thidden_size\tcore_count\tlatency" >> "$results_file"
 
@@ -28,7 +28,7 @@ for depth in "${depths[@]}"; do
             echo "Running NN with depth=${depth}, hidden_size=${hidden}, core_count=${core}"
             
             # Run the training script and capture the output.
-            latency=$(python3 NN_train.py "$hidden" "$depth" "$core")
+            latency=$(python3 NN_online_test.py --test "$hidden" "$depth" "$core")
             
             # Append the parameters and resulting latency to the results file.
             echo -e "${depth}\t${hidden}\t${core}\t${latency}" >> "$results_file"

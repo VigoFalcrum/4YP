@@ -52,9 +52,9 @@ def preprocess_test_data():
     """Force‐recreate the processed test files from raw parquet."""
     X = _clean(pd.read_parquet("X_test.parquet"))
     y = pd.read_parquet("y_test.parquet").iloc[1:, 0].reset_index(drop=True)
-    X_sub, _, y_sub, _ = train_test_split(X, y, train_size=100, stratify=y, random_state=29)
-    X_sub.to_parquet("X_test_online.parquet", index=False)
-    y_sub.to_frame().to_parquet("y_test_online.parquet", index=False)
+    X_sub, _, y_sub, _ = train_test_split(X, y, train_size=32_000, stratify=y, random_state=29)
+    X_sub.to_parquet("X_test_batch.parquet", index=False)
+    y_sub.to_frame().to_parquet("y_test_batch.parquet", index=False)
 
 # ───────────────────────────────────────────
 # Inference
@@ -67,7 +67,7 @@ def run_inference(layer_width: int, depth: int, cores: int, skip_preprocess: boo
         preprocess_test_data()
 
     # Load processed test set
-    X_test = pd.read_parquet("X_test_online.parquet")
+    X_test = pd.read_parquet("X_test_batch.parquet")
 
     # Restore scaler & model
     scaler = joblib.load(f"scaler_{depth}_{layer_width}.pkl")
@@ -81,21 +81,13 @@ def run_inference(layer_width: int, depth: int, cores: int, skip_preprocess: boo
     
     # Inference
     t0 = time.perf_counter()
-    for i in range(100):
+    for _ in range(5):
         with torch.no_grad():
-            sample = X_t[i : i+1]
-            logits = model(sample)
+            logits = model(X_t)
     t1 = time.perf_counter()
-    total = (t1 - t0)/100
 
-    t0 = time.perf_counter()
-    for i in range(100):
-        with torch.no_grad():
-            sample = X_t[i : i+1]
-    t1 = time.perf_counter()
-    total = total - (t1 - t0)/100
-
-    print(f"Training time: {total:.8f} seconds")
+    total = (t1 - t0)/5
+    print(f"Training time: {total:.5f} seconds")
 # ───────────────────────────────────────────
 # Entry point
 # ───────────────────────────────────────────
